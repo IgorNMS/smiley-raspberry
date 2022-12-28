@@ -7,7 +7,7 @@ import adafruit_ssd1306
 import subprocess
 import time
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from signal import pause
 from gpiozero import Button
 
@@ -21,16 +21,11 @@ HEIGHT = 64
 BORDER = 5
 # Use for I2C.
 i2c = board.I2C()
-oled = adafruit_ssd1306.SSD1306_128_64(rst=oled_reset)
+disp = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C, reset=oled_reset)
 
-
-oled.begin()
-
-oled.clear()
-oled.display
-
-image = Image.open('smile.ppm').convert('1')
-
-oled.image(image)
-oled.display()
+disp.fill(0)
+disp.show()
+image = Image.open("smile.ppm").convert("1")
+disp.image(image)
+disp.show()
 
