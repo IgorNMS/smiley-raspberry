@@ -21,7 +21,7 @@ HEIGHT = 64
 BORDER = 5
 # Use for I2C.
 i2c = board.I2C()
-oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C, reset=oled_reset)
+oled = adafruit_ssd1306.SSD1306_128_64(rst=oled_reset)
 
 
 oled.begin()
